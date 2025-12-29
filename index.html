@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -190,6 +191,15 @@
             letter-spacing: 3px;
         }
 
+        .wedding-date-location {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--dark-red);
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
         .divider {
             width: 200px;
             height: 2px;
@@ -236,6 +246,102 @@
             right: -40px;
         }
 
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Meet The Couple Section */
+        .couple-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--peacock-blue) 0%, var(--peacock-green) 100%);
+            border-top: 5px solid var(--gold);
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .couple-section .section-title {
+            color: var(--gold);
+        }
+
+        .couple-section .section-title::before,
+        .couple-section .section-title::after {
+            color: var(--gold);
+        }
+
+        .couple-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .person-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--gold);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .person-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+        }
+
+        .person-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            object-fit: cover;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .person-title {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .person-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: var(--cream);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .parents-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .parents-label {
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .parent-name {
+            font-size: 22px;
+            color: var(--cream);
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
         /* Wedding Functions Section */
         .functions-section {
             padding: 80px 20px;
@@ -249,11 +355,6 @@
         .functions-section .section-title::before,
         .functions-section .section-title::after {
             color: var(--royal-red);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
         }
 
         .functions-container {
@@ -309,7 +410,7 @@
         .countdown-section {
             padding: 80px 20px;
             text-align: center;
-            background: linear-gradient(135deg, var(--peacock-blue) 0%, var(--peacock-green) 100%);
+            background: linear-gradient(135deg, var(--royal-red) 0%, var(--dark-red) 100%);
             border-top: 5px solid var(--gold);
             border-bottom: 5px solid var(--gold);
         }
@@ -493,86 +594,89 @@
         /* Venue Section */
         .venue-section {
             padding: 80px 20px;
-            background: linear-gradient(135deg, var(--royal-red) 0%, var(--dark-red) 100%);
-            border-top: 5px solid var(--gold);
-            border-bottom: 5px solid var(--gold);
+            background: linear-gradient(135deg, #f5e6d3 0%, var(--cream) 100%);
         }
 
         .venue-section .section-title {
-            color: var(--gold);
+            color: var(--royal-red);
         }
 
         .venue-section .section-title::before,
         .venue-section .section-title::after {
-            color: var(--gold);
+            color: var(--royal-red);
         }
 
         .venue-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
 
-        .venue-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 3px solid var(--gold);
-            padding: 40px;
+        .venue-box {
+            background: white;
+            border: 4px solid var(--gold);
+            padding: 50px 40px;
             border-radius: 15px;
-            margin: 30px 0;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.6s ease-out;
+            text-align: center;
         }
 
-        .venue-card.visible {
+        .venue-box.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .venue-function-name {
-            font-family: 'Cinzel', serif;
-            font-size: 32px;
-            color: var(--gold);
-            margin-bottom: 25px;
-            text-align: center;
+        .venue-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
         }
 
-        .venue-details {
-            text-align: center;
+        .venue-dates {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--royal-red);
+            margin-bottom: 30px;
+            font-weight: 700;
         }
 
         .venue-name {
             font-family: 'Cinzel', serif;
             font-size: 28px;
-            color: var(--cream);
+            color: var(--peacock-blue);
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .venue-address {
             font-size: 20px;
-            color: var(--cream);
+            color: var(--dark-red);
             line-height: 1.8;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .map-button {
             display: inline-block;
             padding: 15px 40px;
-            background: linear-gradient(135deg, var(--gold), #c99a2e);
-            color: var(--dark-red);
+            background: linear-gradient(135deg, var(--peacock-blue), var(--peacock-green));
+            color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             font-size: 18px;
-            border: 2px solid var(--cream);
+            border: 2px solid var(--gold);
             transition: all 0.3s ease;
             font-family: 'Cinzel', serif;
         }
 
         .map-button:hover {
-            background: linear-gradient(135deg, #c99a2e, var(--gold));
+            background: linear-gradient(135deg, var(--gold), #c99a2e);
+            color: var(--dark-red);
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
@@ -692,6 +796,10 @@
                 font-size: 32px;
             }
 
+            .wedding-date-location {
+                font-size: 16px;
+            }
+
             .welcome-box {
                 padding: 30px 25px;
             }
@@ -707,6 +815,28 @@
             .section-title::before,
             .section-title::after {
                 display: none;
+            }
+
+            .couple-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .person-photo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .person-title {
+                font-size: 24px;
+            }
+
+            .person-name {
+                font-size: 38px;
+            }
+
+            .parent-name {
+                font-size: 18px;
             }
 
             .countdown-item {
@@ -760,11 +890,12 @@
                 gap: 20px;
             }
 
-            .venue-card {
-                padding: 30px 20px;
+            .venue-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .venue-function-name {
+            .venue-dates {
                 font-size: 26px;
             }
 
@@ -806,14 +937,52 @@
                 
                 <div class="welcome-text">We're Getting Married!</div>
                 <div class="divider"></div>
-                <div class="couple-names-welcome">SHREYA WEDS ARNAV</div>
+                <div class="couple-names-welcome">ARNAV & SHREYA</div>
+                <div class="wedding-date-location">10TH FEBRUARY | GHAZIABAD</div>
             </div>
         </div>
     </section>
 
     <!-- Main Content Wrapper -->
     <div class="content-wrapper">
-        <!-- Wedding Functions Section -->
+        <!-- Meet The Couple Section -->
+        <section class="couple-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-title-hindi">जोड़े से मिलें</span>
+                    <br>
+                    Meet The Couple
+                </h2>
+            </div>
+            
+            <div class="couple-container">
+                <!-- The Bride -->
+                <div class="person-card">
+                    <img src="bride-photo.jpg" alt="Shreya" class="person-photo">
+                    <div class="person-title">The Bride</div>
+                    <div class="person-name">Shreya</div>
+                    <div class="parents-info">
+                        <div class="parents-label">Daughter of</div>
+                        <div class="parent-name">Bride's Father</div>
+                        <div class="parent-name">Bride's Mother</div>
+                    </div>
+                </div>
+
+                <!-- The Groom -->
+                <div class="person-card">
+                    <img src="groom-photo.jpg" alt="Arnav" class="person-photo">
+                    <div class="person-title">The Groom</div>
+                    <div class="person-name">Arnav</div>
+                    <div class="parents-info">
+                        <div class="parents-label">Son of</div>
+                        <div class="parent-name">Groom's Father</div>
+                        <div class="parent-name">Groom's Mother</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Wedding Functions Section -->
         <section class="functions-section">
             <div class="section-header">
                 <h2 class="section-title">
@@ -1104,5 +1273,3 @@
     });
 </script>
 </body> </html>
-
-
