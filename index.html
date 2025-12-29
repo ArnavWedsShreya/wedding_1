@@ -1,224 +1,920 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arnav & Shreya | Wedding</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreya & Arnav - A Royal Union</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-:root {
-  --red: #8b1e1e;
-  --gold: #c9a24d;
-  --beige: #f5efe6;
-  --black: #0e0e0e;
-  --pink: #e8b4c8;
-}
+        :root {
+            --royal-red: #8B0000;
+            --gold: #D4AF37;
+            --peacock-blue: #0F4C81;
+            --peacock-green: #016064;
+            --cream: #FFF8DC;
+            --dark-red: #5C0000;
+        }
 
-* {
-  box-sizing: border-box;
-}
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--dark-red);
+            overflow-x: hidden;
+        }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, serif;
-  background: var(--beige);
-  color: var(--black);
-}
+        /* Full Screen Hero with Parallax */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* HERO */
-.hero {
-  position: relative;
-  height: 100vh;
-  background: url("hero.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('hero-image.jpg') center/cover no-repeat;
+            z-index: 1;
+            transition: all 0.3s ease-out;
+        }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-}
+        /* Ganesh Section - Appears on Scroll */
+        .ganesh-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.95) 0%, rgba(92, 0, 0, 0.95) 100%);
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-out;
+        }
 
-.hero-content {
-  position: relative;
-  text-align: center;
-  color: #fff;
-  padding: 20px;
-}
+        .ganesh-overlay.visible {
+            transform: translateY(0);
+        }
 
-.hero-content h1 {
-  font-size: 2.6rem;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
+        .ganesh-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.1) 10px,
+                rgba(212, 175, 55, 0.1) 20px
+            );
+        }
 
-.hero-content p {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-}
+        .ganesh-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
 
-/* BLUR SECTION */
-.blur-section {
-  position: relative;
-  padding: 80px 20px;
-  background: url("hero.jpg") center/cover fixed no-repeat;
-}
+        .ganesh-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
 
-.blur-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(8px);
-  background: rgba(245,239,230,0.85);
-}
+        .ganesh-text {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-family: 'Cinzel', serif;
+        }
 
-.blur-content {
-  position: relative;
-  max-width: 650px;
-  margin: auto;
-  text-align: center;
-}
+        /* Welcome Message - Appears on Scroll */
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+            pointer-events: none;
+        }
 
-.blur-content h2 {
-  font-size: 2.2rem;
-  color: var(--red);
-  margin-bottom: 10px;
-}
+        .welcome-message.visible {
+            opacity: 1;
+        }
 
-.blur-content p {
-  font-size: 1.1rem;
-}
+        .welcome-box {
+            background: rgba(255, 248, 220, 0.95);
+            border: 4px solid var(--gold);
+            padding: 50px 60px;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            position: relative;
+        }
 
-/* SECTIONS */
-section {
-  padding: 60px 20px;
-  max-width: 700px;
-  margin: auto;
-}
+        .decorative-corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--gold);
+        }
 
-section h3 {
-  text-align: center;
-  color: var(--red);
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-}
+        .top-left {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
 
-/* CARDS */
-.card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 20px;
-  text-align: center;
-  border: 1px solid #eee;
-}
+        .top-right {
+            top: 10px;
+            right: 10px;
+            border-left: none;
+            border-bottom: none;
+        }
 
-.card h4 {
-  color: var(--gold);
-  margin-bottom: 6px;
-  font-size: 1.2rem;
-}
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-right: none;
+            border-top: none;
+        }
 
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 14px 26px;
-  background: var(--red);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 30px;
-  font-size: 0.95rem;
-}
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
 
-/* FOOTER */
-footer {
-  background: var(--black);
-  color: #ccc;
-  text-align: center;
-  padding: 40px 15px;
-  font-size: 0.9rem;
-}
-</style>
+        .welcome-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 56px;
+            color: var(--royal-red);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .couple-names-welcome {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--peacock-blue);
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, #f5e6d3 0%, var(--cream) 100%);
+        }
+
+        .spacer {
+            height: 100vh;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--peacock-blue) 0%, var(--peacock-green) 100%);
+            border-top: 5px solid var(--gold);
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: var(--gold);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '❖';
+            position: absolute;
+            color: var(--gold);
+            font-size: 24px;
+        }
+
+        .section-title::before {
+            left: -40px;
+        }
+
+        .section-title::after {
+            right: -40px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--gold);
+            padding: 25px 35px;
+            border-radius: 10px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .countdown-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        .countdown-label {
+            font-size: 18px;
+            color: var(--cream);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Wedding Functions Section */
+        .functions-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f5e6d3 0%, var(--cream) 100%);
+        }
+
+        .functions-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .function-card {
+            background: white;
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border: 3px solid var(--gold);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+            text-align: center;
+        }
+
+        .function-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .function-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+        }
+
+        .function-name {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: var(--royal-red);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .function-date {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--peacock-blue);
+            margin-bottom: 10px;
+        }
+
+        .function-time {
+            font-size: 22px;
+            color: var(--dark-red);
+            font-style: italic;
+        }
+
+        /* Venue Section */
+        .venue-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--royal-red) 0%, var(--dark-red) 100%);
+            border-top: 5px solid var(--gold);
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .venue-section .section-title {
+            color: var(--gold);
+            display: block;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .venue-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .venue-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--gold);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .venue-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .venue-function-name {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .venue-details {
+            text-align: center;
+        }
+
+        .venue-name {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--cream);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .venue-address {
+            font-size: 20px;
+            color: var(--cream);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .map-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold), #c99a2e);
+            color: var(--dark-red);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            border: 2px solid var(--cream);
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+        }
+
+        .map-button:hover {
+            background: linear-gradient(135deg, #c99a2e, var(--gold));
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Blessings Section */
+        .blessings-section {
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blessings-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('blessings-bg.jpg') center/cover no-repeat;
+            filter: brightness(0.5);
+        }
+
+        .blessings-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.7) 0%, rgba(15, 76, 129, 0.6) 100%);
+        }
+
+        .blessings-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            background: rgba(255, 248, 220, 0.95);
+            padding: 60px 50px;
+            border: 4px solid var(--gold);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            text-align: center;
+        }
+
+        .blessings-title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--royal-red);
+            margin-bottom: 30px;
+        }
+
+        .blessings-title-hindi {
+            font-size: 42px;
+            color: var(--peacock-blue);
+        }
+
+        .blessings-text {
+            font-size: 24px;
+            line-height: 2;
+            color: var(--dark-red);
+            margin-bottom: 20px;
+        }
+
+        .blessings-invite {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--peacock-blue);
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* Our Story Section */
+        .story-section {
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('our-story-image.jpg') center/cover no-repeat;
+            filter: brightness(0.6);
+        }
+
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(1, 96, 100, 0.7), rgba(139, 0, 0, 0.7));
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            background: rgba(255, 248, 220, 0.95);
+            padding: 60px 50px;
+            border: 4px solid var(--gold);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            text-align: center;
+        }
+
+        .story-title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--royal-red);
+            margin-bottom: 30px;
+        }
+
+        .story-text {
+            font-size: 24px;
+            line-height: 2;
+            color: var(--dark-red);
+            font-style: italic;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--peacock-green) 0%, var(--peacock-blue) 100%);
+            text-align: center;
+            border-top: 5px solid var(--gold);
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .rsvp-section .section-title {
+            color: var(--gold);
+        }
+
+        .rsvp-text {
+            font-size: 24px;
+            color: var(--cream);
+            margin: 30px auto;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .phone-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .phone-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--gold);
+            padding: 30px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .phone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .phone-label {
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .phone-link {
+            display: inline-block;
+            font-size: 28px;
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+
+        .phone-link:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-red) 0%, #000 100%);
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--gold);
+            border-top: 3px solid var(--gold);
+        }
+
+        .footer-text {
+            font-size: 24px;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .footer-love {
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: var(--gold);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .ganesh-text {
+                font-size: 14px;
+            }
+
+            .ganesh-img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .welcome-text {
+                font-size: 36px;
+            }
+
+            .couple-names-welcome {
+                font-size: 32px;
+            }
+
+            .welcome-box {
+                padding: 30px 25px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-title::before,
+            .section-title::after {
+                display: none;
+            }
+
+            .countdown-item {
+                padding: 20px 25px;
+                min-width: 100px;
+            }
+
+            .countdown-number {
+                font-size: 36px;
+            }
+
+            .function-name {
+                font-size: 32px;
+            }
+
+            .function-date {
+                font-size: 22px;
+            }
+
+            .function-time {
+                font-size: 18px;
+            }
+
+            .blessings-content,
+            .story-content {
+                padding: 40px 30px;
+            }
+
+            .blessings-title,
+            .story-title {
+                font-size: 32px;
+            }
+
+            .blessings-title-hindi {
+                font-size: 28px;
+            }
+
+            .blessings-text,
+            .story-text {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            .blessings-invite {
+                font-size: 20px;
+            }
+
+            .phone-numbers {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .venue-card {
+                padding: 30px 20px;
+            }
+
+            .venue-function-name {
+                font-size: 26px;
+            }
+
+            .venue-name {
+                font-size: 22px;
+            }
+
+            .venue-address {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Ganesh Overlay - Appears on Scroll -->
+    <div class="ganesh-overlay" id="ganeshOverlay">
+        <div class="ganesh-content">
+            <img src="ganesh-ji.jpg" alt="Lord Ganesh" class="ganesh-img">
+            <div class="ganesh-text">ॐ गं गणपतये नमः</div>
+        </div>
+    </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>Arnav & Shreya</h1>
-    <p>10 February 2026 · Ghaziabad</p>
-  </div>
-</div>
+    <!-- Hero Section with Parallax Background -->
+    <section class="hero-section">
+        <div class="hero-bg" id="heroBg"></div>
+    </section>
 
-<!-- BLUR WELCOME -->
-<div class="blur-section">
-  <div class="blur-content">
-    <h2>Welcome</h2>
-    <p>
-      to the wedding celebration of<br>
-      <strong>Arnav & Shreya</strong>
-    </p>
-  </div>
-</div>
+    <!-- Welcome Message - Appears on Scroll -->
+    <div class="welcome-message" id="welcomeMessage">
+        <div class="welcome-box">
+            <div class="decorative-corner top-left"></div>
+            <div class="decorative-corner top-right"></div>
+            <div class="decorative-corner bottom-left"></div>
+            <div class="decorative-corner bottom-right"></div>
+            
+            <div class="welcome-text">We're Getting Married!</div>
+            <div class="divider"></div>
+            <div class="couple-names-welcome">ARNAV & SHREYA</div>
+        </div>
+    </div>
 
-<!-- EVENTS -->
-<section>
-  <h3>Wedding Celebrations</h3>
+    <!-- Spacer for Scroll Effect -->
+    <div class="spacer"></div>
 
-  <div class="card">
-    <h4>Mehendi</h4>
-    <p>7 February 2026<br><em>Timings to be decided</em></p>
-  </div>
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Countdown Section -->
+        <section class="countdown-section">
+            <h2 class="section-title">Counting Down To Forever</h2>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </section>
 
-  <div class="card">
-    <h4>Bhaat & Kirtan</h4>
-    <p>8 February 2026<br><em>Timings to be decided</em></p>
-  </div>
+        <!-- Wedding Functions Section -->
+        <section class="functions-section">
+            <h2 class="section-title" style="color: var(--royal-red); display: block; text-align: center; margin-bottom: 50px;">Wedding Celebrations</h2>
+            
+            <div class="functions-container">
+                <!-- Mehendi -->
+                <div class="function-card">
+                    <div class="function-name">Mehendi</div>
+                    <div class="divider"></div>
+                    <div class="function-date">7th February 2026</div>
+                    <div class="function-time">Time To Be Decided</div>
+                </div>
 
-  <div class="card">
-    <h4>Sangeet & Engagement</h4>
-    <p>9 February 2026<br><em>Timings to be decided</em></p>
-  </div>
+                <!-- Kirtan -->
+                <div class="function-card">
+                    <div class="function-name">Kirtan</div>
+                    <div class="divider"></div>
+                    <div class="function-date">8th February 2026</div>
+                    <div class="function-time">Time To Be Decided</div>
+                </div>
 
-  <div class="card">
-    <h4>Haldi · Wedding · Reception</h4>
-    <p>10 February 2026<br><em>Timings to be decided</em></p>
-  </div>
-</section>
+                <!-- Engagement & Sangeet -->
+                <div class="function-card">
+                    <div class="function-name">Engagement & Sangeet</div>
+                    <div class="divider"></div>
+                    <div class="function-date">9th February 2026</div>
+                    <div class="function-time">Time To Be Decided</div>
+                </div>
 
-<!-- VENUE -->
-<section>
-  <h3>Venue</h3>
-  <div class="card">
-    <p>Venue details will be shared soon</p>
-    <a class="btn" href="#" target="_blank">Open in Google Maps</a>
-  </div>
-</section>
+                <!-- Haldi & Shaadi -->
+                <div class="function-card">
+                    <div class="function-name">Haldi & Shaadi</div>
+                    <div class="divider"></div>
+                    <div class="function-date">10th February 2026</div>
+                    <div class="function-time">Time To Be Decided</div>
+                </div>
+            </div>
+        </section>
 
-<!-- RSVP -->
-<section>
-  <h3>RSVP</h3>
+        <!-- Venue Section -->
+        <section class="venue-section">
+            <h2 class="section-title">Venue Details</h2>
+            
+            <div class="venue-container">
+                <!-- Mehendi Venue -->
+                <div class="venue-card">
+                    <div class="venue-function-name">Mehendi Ceremony</div>
+                    <div class="divider"></div>
+                    <div class="venue-details">
+                        <div class="venue-name">Venue Name</div>
+                        <div class="venue-address">Add venue address here</div>
+                        <a href="add google link here" target="_blank" class="map-button">View on Google Maps</a>
+                    </div>
+                </div>
 
-  <div class="card">
-    <h4>Bride Side</h4>
-    <a class="btn" href="tel:XXXXXXXXXX">Call</a>
-  </div>
+                <!-- Kirtan Venue -->
+                <div class="venue-card">
+                    <div class="venue-function-name">Kirtan</div>
+                    <div class="divider"></div>
+                    <div class="venue-details">
+                        <div class="venue-name">Venue Name</div>
+                        <div class="venue-address">Add venue address here</div>
+                        <a href="add google link here" target="_blank" class="map-button">View on Google Maps</a>
+                    </div>
+                </div>
 
-  <div class="card">
-    <h4>Groom Side</h4>
-    <a class="btn" href="tel:XXXXXXXXXX">Call</a>
-  </div>
-</section>
+                <!-- Engagement & Sangeet Venue -->
+                <div class="venue-card">
+                    <div class="venue-function-name">Engagement & Sangeet</div>
+                    <div class="divider"></div>
+                    <div class="venue-details">
+                        <div class="venue-name">Venue Name</div>
+                        <div class="venue-address">Add venue address here</div>
+                        <a href="add google link here" target="_blank" class="map-button">View on Google Maps</a>
+                    </div>
+                </div>
 
-<footer>
-  With love & blessings<br>
-  Arnav & Shreya
-</footer>
+                <!-- Haldi & Shaadi Venue -->
+                <div class="venue-card">
+                    <div class="venue-function-name">Haldi & Shaadi</div>
+                    <div class="divider"></div>
+                    <div class="venue-details">
+                        <div class="venue-name">Venue Name</div>
+                        <div class="venue-address">Add venue address here</div>
+                        <a href="add google link here" target="_blank" class="map-button">View on Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</body>
-</html>
+        <!-- Blessings Section -->
+        <section class="blessings-section">
+            <div class="blessings-bg"></div>
+            <div class="blessings-overlay"></div>
+            <div class="blessings-content">
+                <h2 class="blessings-title">
+                    <span class="blessings-title-hindi">आशीर्वाद</span>
+                    <br>
+                    Blessings
+                </h2>
+                <div class="divider"></div>
+                <p class="blessings-text">
+                    With the gracious blessings of our parents, elders, and Lord Ganesha, we invite you to be a part of our joyous union.
+                </p>
+                <p class="blessings-text">
+                    May this new chapter be filled with love, happiness, and prosperity.
+                </p>
+                <p class="blessings-invite">
+                    पधारो सा! We cordially invite you and your family to grace the occasion with your presence.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section class="story-section">
+            <div class="story-bg"></div>
+            <div class="story-overlay"></div>
+            <div class="story-content">
+                <h2 class="story-title">Our Story</h2>
+                <div class="divider"></div>
+                <p class="story-text">
+                    Shreya and Arnav's journey began with shared smiles and endless conversations. Now, surrounded by family and friends, we are ready to embark on this beautiful lifelong adventure together.
+                </p>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="rsvp-section">
+            <h2 class="section-title">Join Our Celebration</h2>
+            <p class="rsvp-text">Your presence would make our special day even more memorable. Please confirm your attendance by reaching out to us.</p>
+            
+            <div class="phone-numbers">
+                <div class="phone-card">
+                    <div class="phone-label">Contact 1</div>
+                    <a href="tel:+919999999999" class="phone-link">+91 99999 99999</a>
+                </div>
+                <div class="phone-card">
