@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,59 +46,58 @@
             z-index: 1;
             transition: all 0.1s ease-out;
         }
-/* Scroll Indicator */
-.scroll-indicator {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateX(-1px); /* iOS centering fix */
-    z-index: 20;
-    pointer-events: none;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateX(-1px);
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: scrollBounce 1.8s infinite;
+        }
 
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    animation: scrollBounce 1.8s infinite;
-}
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
 
-.scroll-indicator.visible {
-    opacity: 1;
-}
+        .scroll-text {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
 
-.scroll-text {
-    font-family: 'Cinzel', serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: #ffffff;
-    margin-bottom: 4px;
-}
+        .scroll-arrow {
+            font-size: 52px;
+            line-height: 1;
+            color: #ffffff;
+        }
 
-.scroll-arrow {
-    font-size: 52px;
-    line-height: 1;
-    color: #ffffff;
-}
+        .scroll-text,
+        .scroll-arrow {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+        }
 
-.scroll-text,
-.scroll-arrow {
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
-}
-
-@keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(10px);
-    }
-    60% {
-        transform: translateY(5px);
-    }
-}
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(10px);
+            }
+            60% {
+                transform: translateY(5px);
+            }
+        }
 
         /* Ganesh Section - Appears on Scroll */
         .ganesh-overlay {
@@ -195,6 +193,33 @@
             position: relative;
         }
 
+        /* Welcome Decorative Images */
+        .welcome-decorative-img {
+            position: fixed;
+            z-index: 49;
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+            pointer-events: none;
+        }
+
+        .welcome-decorative-img.visible {
+            opacity: 1;
+        }
+
+        .welcome-girl {
+            top: 10%;
+            left: 5%;
+            width: 150px;
+            height: auto;
+        }
+
+        .welcome-man {
+            bottom: 10%;
+            right: 5%;
+            width: 150px;
+            height: auto;
+        }
+
         .decorative-corner {
             position: absolute;
             width: 60px;
@@ -262,6 +287,28 @@
             margin: 20px auto;
         }
 
+        /* Fancy Curved Underline for Section Titles */
+        .fancy-underline {
+            width: 150px;
+            height: 3px;
+            background: var(--gold);
+            margin: 15px auto 0;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .fancy-underline::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 100%;
+            background: var(--gold);
+            left: -10%;
+            top: 8px;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
         /* Content Sections */
         .content-wrapper {
             position: relative;
@@ -284,23 +331,6 @@
             margin-bottom: 5px;
         }
 
-        .section-title::before,
-        .section-title::after {
-            content: '❖';
-            position: absolute;
-            font-size: 24px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .section-title::before {
-            left: -40px;
-        }
-
-        .section-title::after {
-            right: -40px;
-        }
-
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -312,14 +342,23 @@
             background: linear-gradient(135deg, var(--peacock-blue) 0%, var(--peacock-green) 100%);
             border-top: 5px solid var(--gold);
             border-bottom: 5px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Peacock Background Image */
+        .peacock-bg {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: auto;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .couple-section .section-title {
-            color: var(--gold);
-        }
-
-        .couple-section .section-title::before,
-        .couple-section .section-title::after {
             color: var(--gold);
         }
 
@@ -330,6 +369,8 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 60px;
             margin-top: 50px;
+            position: relative;
+            z-index: 2;
         }
 
         .person-card {
@@ -401,20 +442,32 @@
         .functions-section {
             padding: 80px 20px;
             background: linear-gradient(135deg, #f5e6d3 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Wedding Functions Background Image */
+        .functions-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('wedding-functions-bg.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .functions-section .section-title {
             color: var(--royal-red);
         }
 
-        .functions-section .section-title::before,
-        .functions-section .section-title::after {
-            color: var(--royal-red);
-        }
-
         .functions-container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .function-card {
@@ -471,11 +524,6 @@
         }
 
         .countdown-section .section-title {
-            color: var(--gold);
-        }
-
-        .countdown-section .section-title::before,
-        .countdown-section .section-title::after {
             color: var(--gold);
         }
 
@@ -650,14 +698,24 @@
         .venue-section {
             padding: 80px 20px;
             background: linear-gradient(135deg, #f5e6d3 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Map Pin Background */
+        .map-pin-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .venue-section .section-title {
-            color: var(--royal-red);
-        }
-
-        .venue-section .section-title::before,
-        .venue-section .section-title::after {
             color: var(--royal-red);
         }
 
@@ -668,9 +726,11 @@
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 40px;
             margin-top: 50px;
+            position: relative;
+            z-index: 2;
         }
 
-        .venue-box {
+        .venue-card {
             background: white;
             border: 4px solid var(--gold);
             padding: 50px 40px;
@@ -682,22 +742,14 @@
             text-align: center;
         }
 
-        .venue-box.visible {
+        .venue-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .venue-box:hover {
+        .venue-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-        }
-
-        .venue-dates {
-            font-family: 'Cinzel', serif;
-            font-size: 32px;
-            color: var(--royal-red);
-            margin-bottom: 30px;
-            font-weight: 700;
         }
 
         .venue-name {
@@ -746,11 +798,6 @@
         }
 
         .rsvp-section .section-title {
-            color: var(--gold);
-        }
-
-        .rsvp-section .section-title::before,
-        .rsvp-section .section-title::after {
             color: var(--gold);
         }
 
@@ -820,17 +867,53 @@
             border-top: 5px solid var(--gold);
         }
 
-        .footer-text {
-            font-size: 28px;
-            font-family: 'Cinzel', serif;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-        }
-
         .footer-love {
             font-family: 'Caveat', cursive;
             font-size: 42px;
             color: var(--gold);
+        }
+
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), #c99a2e);
+            border: 3px solid var(--royal-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        .music-control svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--royal-red);
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(212, 175, 55, 0.6);
+            }
         }
 
         /* Mobile Responsiveness */
@@ -861,17 +944,17 @@
                 padding: 30px 25px;
             }
 
+            .welcome-girl,
+            .welcome-man {
+                width: 100px;
+            }
+
             .section-title {
                 font-size: 28px;
             }
 
             .section-title-hindi {
                 font-size: 26px;
-            }
-
-            .section-title::before,
-            .section-title::after {
-                display: none;
             }
 
             .couple-container {
@@ -894,6 +977,10 @@
 
             .parent-name {
                 font-size: 18px;
+            }
+
+            .peacock-bg {
+                width: 250px;
             }
 
             .countdown-item {
@@ -929,295 +1016,317 @@
 
             .blessings-title-hindi,
             .story-title-hindi {
-                font-size: 28px;
-            }
-
-            .blessings-text,
-            .story-text {
-                font-size: 18px;
-                line-height: 1.8;
-            }
-
-            .blessings-invite {
-                font-size: 20px;
-            }
-
-            .phone-numbers {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .venue-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .venue-dates {
-                font-size: 26px;
-            }
-
-            .venue-name {
-                font-size: 22px;
-            }
-
-            .venue-address {
-                font-size: 18px;
-            }
-
-            .decorative-corner {
-                width: 40px;
-                height: 40px;
-            }
+                font-size: 28px; 
+}
+.blessings-text,
+        .story-text {
+            font-size: 18px;
+            line-height: 1.8;
         }
-    </style>
+
+        .blessings-invite {
+            font-size: 20px;
+        }
+
+        .phone-numbers {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .venue-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .venue-name {
+            font-size: 22px;
+        }
+
+        .venue-address {
+            font-size: 18px;
+        }
+
+        .decorative-corner {
+            width: 40px;
+            height: 40px;
+        }
+
+        .music-control {
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .music-control svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .map-pin-bg {
+            width: 200px;
+        }
+    }
+</style>
 </head>
-<body>
-    <!-- Ganesh Overlay - Appears on Scroll -->
-    <div class="ganesh-overlay" id="ganeshOverlay">
-        <div class="ganesh-content">
-            <img src="ganesh-ji.jpg" alt="Lord Ganesh" class="ganesh-img">
-            <div class="ganesh-text">ॐ गं गणपतये नमः</div>
+ <body>
+ <!-- Background Music -->
+ <audio id="bgMusic" loop> 
+<source src="wedding-music.mp3" type="audio/mpeg"> 
+</audio>
+<!-- Music Control Button -->
+<button class="music-control playing" id="musicControl" aria-label="Toggle Music">
+    <svg id="playIcon" style="display: none;" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+    </svg>
+    <svg id="pauseIcon" viewBox="0 0 24 24">
+        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+    </svg>
+</button>
+
+<!-- Ganesh Overlay - Appears on Scroll -->
+<div class="ganesh-overlay" id="ganeshOverlay">
+    <div class="ganesh-content">
+        <img src="ganesh-ji.jpg" alt="Lord Ganesh" class="ganesh-img">
+        <div class="ganesh-text">ॐ गं गणपतये नमः</div>
+    </div>
+</div>
+
+<!-- Hero Section with Parallax Background -->
+<section class="hero-section">
+    <div class="hero-bg" id="heroBg"></div>
+    
+    <!-- Welcome Decorative Images -->
+    <img src="welcome-girl.png" alt="" class="welcome-decorative-img welcome-girl" id="welcomeGirl">
+    <img src="welcome-man.png" alt="" class="welcome-decorative-img welcome-man" id="welcomeMan">
+    
+    <!-- Welcome Message - Appears on Scroll -->
+    <div class="welcome-message" id="welcomeMessage">
+        <div class="welcome-box">
+            <div class="decorative-corner top-left"></div>
+            <div class="decorative-corner top-right"></div>
+            <div class="decorative-corner bottom-left"></div>
+            <div class="decorative-corner bottom-right"></div>
+            
+            <div class="welcome-text">Smt. Santosh Devi Tibrewal cordially invites you and your family to the auspicious marriage of her granddaughter and seeks your presence & blessings. </div>
+            <div class="divider"></div>
+            <div class="couple-names-welcome">SHREYA & ARNAV</div>
+            <div class="wedding-date-location">10TH FEBRUARY | GHAZIABAD</div>
         </div>
     </div>
 
-    <!-- Hero Section with Parallax Background -->
-    <section class="hero-section">
-        <div class="hero-bg" id="heroBg"></div>
-        
-        <!-- Welcome Message - Appears on Scroll -->
-        <div class="welcome-message" id="welcomeMessage">
-            <div class="welcome-box">
-                <div class="decorative-corner top-left"></div>
-                <div class="decorative-corner top-right"></div>
-                <div class="decorative-corner bottom-left"></div>
-                <div class="decorative-corner bottom-right"></div>
-                
-                <div class="welcome-text">Smt. Santosh Devi Tibrewal cordially invites you and your family to the auspicious marriage of her granddaughter and seeks your presence & blessings. </div>
-                <div class="divider"></div>
-                <div class="couple-names-welcome">SHREYA & ARNAV</div>
-                <div class="wedding-date-location">10TH FEBRUARY | GHAZIABAD</div>
-            </div>
-        </div>
-        <!-- Scroll Indicator -->
-<div class="scroll-indicator" id="scrollIndicator">
-    <div class="scroll-text">SCROLL</div>
-    <div class="scroll-arrow">⌄</div>
-</div>
-    </section>
-
-    <!-- Main Content Wrapper -->
-    <div class="content-wrapper">
-        <!-- Meet The Couple Section -->
-        <section class="couple-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <br>
-                    जोड़ी / Meet The Couple
-                </h2>
-            </div>
-            
-            <div class="couple-container">
-                <!-- The Bride -->
-                <div class="person-card">
-                    <img src="bride-photo.jpg" alt="Shreya" class="person-photo">
-                    <div class="person-title">The Bride</div>
-                    <div class="person-name">Shreya Tibrewal</div>
-                    <div class="parents-info">
-                        <div class="parents-label">Daughter of</div>
-                        <div class="parent-name">Sangita Tibrewal &</div>
-                        <div class="parent-name">Pradeep Tibrewal</div>
-                    </div>
-                </div>
-
-                <!-- The Groom -->
-                <div class="person-card">
-                    <img src="groom-photo.jpg" alt="Arnav" class="person-photo">
-                    <div class="person-title">The Groom</div>
-                    <div class="person-name">Arnav Jain</div>
-                    <div class="parents-info">
-                        <div class="parents-label">Son of</div>
-                        <div class="parent-name">Rashmi Jain &</div>
-                        <div class="parent-name">Ashish Jain</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<!-- Wedding Functions Section -->
-        <section class="functions-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <br>
-                   शादी समारोह / Wedding Celebrations
-                </h2>
-            </div>
-            
-            <div class="functions-container">
-                        <!-- Mehendi -->
-        <div class="function-card">
-            <div class="function-name">Mehendi</div>
-            <div class="divider"></div>
-            <div class="function-date">7th February 2026</div>
-            <div class="function-time">10AM-7PM</div>
-        </div>
-
-        <!-- Bhaat and Parojan -->
-        <div class="function-card">
-            <div class="function-name">Bhaat & Parojan</div>
-            <div class="divider"></div>
-            <div class="function-date">8th February 2026</div>
-            <div class="function-time">10AM Onwards</div>
-        </div>
-
-        <!-- Kirtan -->
-        <div class="function-card">
-            <div class="function-name">Sri Khatu Shyam Kirtan</div>
-            <div class="divider"></div>
-            <div class="function-date">8th February 2026</div>
-            <div class="function-time">5PM Onwards</div>
-        </div>
-
-        <!-- Engagement & Sangeet -->
-        <div class="function-card">
-            <div class="function-name">Ring Ceremony & Sangeet</div>
-            <div class="divider"></div>
-            <div class="function-date">9th February 2026</div>
-            <div class="function-time">11AM-3PM</div>
-        </div>
-
-        <!-- Haldi -->
-        <div class="function-card">
-            <div class="function-name">Haldi</div>
-            <div class="divider"></div>
-            <div class="function-date">10th February 2026</div>
-            <div class="function-time">10AM Onwards</div>
-        </div>
-
-        <!-- Shaadi & Reception -->
-        <div class="function-card">
-            <div class="function-name">Shaadi & Reception</div>
-            <div class="divider"></div>
-            <div class="function-date">10th February 2026</div>
-            <div class="function-time">7PM Onwards</div>
-        </div>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-text">SCROLL</div>
+        <div class="scroll-arrow">⌄</div>
     </div>
 </section>
 
-
-        <!-- Countdown Section -->
-        <section class="countdown-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <br>
-                    बस कुछ पल बाकी / Counting Down To Forever
-                </h2>
-            </div>
-            <div class="countdown-timer">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Days</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
+<!-- Main Content Wrapper -->
+<div class="content-wrapper">
+    <!-- Meet The Couple Section -->
+    <section class="couple-section">
+        <img src="peacock.png" alt="" class="peacock-bg">
+        <div class="section-header">
+            <h2 class="section-title">
+                जोड़ी / Meet The Couple
+            </h2>
+            <div class="fancy-underline"></div>
+        </div>
+        
+        <div class="couple-container">
+            <!-- The Bride -->
+            <div class="person-card">
+                <img src="bride-photo.jpg" alt="Shreya" class="person-photo">
+                <div class="person-title">The Bride</div>
+                <div class="person-name">Shreya Tibrewal</div>
+                <div class="parents-info">
+                    <div class="parents-label">Daughter of</div>
+                    <div class="parent-name">Sangita Tibrewal &</div>
+                    <div class="parent-name">Pradeep Tibrewal</div>
                 </div>
             </div>
-        </section>
 
-        <!-- Our Story Section -->
-        <section class="story-section">
-            <div class="story-bg"></div>
-            <div class="story-overlay"></div>
-            <div class="story-content">
-                <h2 class="story-title">
-                    <br>
-                    हमारी कहानी / Our Story
-                </h2>
+            <!-- The Groom -->
+            <div class="person-card">
+                <img src="groom-photo.jpg" alt="Arnav" class="person-photo">
+                <div class="person-title">The Groom</div>
+                <div class="person-name">Arnav Jain</div>
+                <div class="parents-info">
+                    <div class="parents-label">Son of</div>
+                    <div class="parent-name">Rashmi Jain &</div>
+                    <div class="parent-name">Ashish Jain</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Functions Section -->
+    <section class="functions-section">
+        <div class="functions-bg"></div>
+        <div class="section-header">
+            <h2 class="section-title">
+                शादी समारोह / Wedding Celebrations
+            </h2>
+            <div class="fancy-underline"></div>
+        </div>
+        
+        <div class="functions-container">
+            <!-- Mehendi -->
+            <div class="function-card">
+                <div class="function-name">Mehendi</div>
                 <div class="divider"></div>
-                <p class="story-text">
-                    Shreya and Arnav's journey began with shared smiles and endless conversations. Now, surrounded by family and friends, we are ready to embark on this beautiful lifelong adventure together.
-                </p>
+                <div class="function-date">7th February 2026</div>
+                <div class="function-time">10AM-7PM</div>
             </div>
-        </section>
 
-        <!-- Blessings Section -->
-        <section class="blessings-section">
-            <div class="blessings-bg"></div>
-            <div class="blessings-overlay"></div>
-            <div class="blessings-content">
-                <h2 class="blessings-title">
-                    <br>
-                   आशीर्वाद / Blessings
-                </h2>
+            <!-- Bhaat and Parojan -->
+            <div class="function-card">
+                <div class="function-name">Bhaat & Parojan</div>
                 <div class="divider"></div>
-                <p class="blessings-text">
-                    With the gracious blessings of Lord Ganesha, our parents and elders, we invite you to be a part of our joyous union.
-                </p>
-                <p class="blessings-text">
-                    May this new chapter be filled with love, happiness, and prosperity.
-                </p>
-                <p class="blessings-invite">
-                    पधारो सा! We cordially invite you and your family to grace the occasion with your presence.
-                </p>
+                <div class="function-date">8th February 2026</div>
+                <div class="function-time">10AM Onwards</div>
             </div>
-        </section>
 
-        <!-- Venue Section -->
-        <section class="venue-section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <br>
-                    स्थान और दिशा-निर्देश / Venue & Directions
-                </h2>
+            <!-- Kirtan -->
+            <div class="function-card">
+                <div class="function-name">Sri Khatu Shyam Kirtan</div>
+                <div class="divider"></div>
+                <div class="function-date">8th February 2026</div>
+                <div class="function-time">5PM Onwards</div>
             </div>
-            
-            <div class="venue-container">
-                <!-- Mehendi Venue -->
-                <div class="venue-card">
-                    <div class="divider"></div>
-                    <div class="venue-details">
-                        <div class="venue-name">Mehendi Ceremony</div>
-                        <div class="venue-address">Rajasthan Bhawan, Sector 10, Faridabad</div>
-                        <a href="https://www.google.com/maps/place/Rajasthan+Seva+Sadan/@28.3728524,77.3240357,14.64z/data=!4m15!1m8!3m7!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!2sRajasthan+Seva+Sadan!8m2!3d28.3815833!4d77.3240137!10e5!16s%2Fg%2F11c1wtf68z!3m5!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!8m2!3d28.3815833!4d77.3240137!16s%2Fg%2F11c1wtf68z!5m1!1e2?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank" class="map-button">View on Google Maps</a>
-                    </div>
-                </div>
 
-                <!-- Kirtan Venue -->
-                <div class="venue-card">
-                    <div class="divider"></div>
-                <div class="venue-details">
-                    <div class="venue-name">Kirtan</div>
-                    <div class="venue-address">Rajasthan Bhawan, Sector 10, Faridabad</div>
-                    <a href="https://www.google.com/maps/place/Rajasthan+Seva+Sadan/@28.3728524,77.3240357,14.64z/data=!4m15!1m8!3m7!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!2sRajasthan+Seva+Sadan!8m2!3d28.3815833!4d77.3240137!10e5!16s%2Fg%2F11c1wtf68z!3m5!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!8m2!3d28.3815833!4d77.3240137!16s%2Fg%2F11c1wtf68z!5m1!1e2?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank" class="map-button">View on Google Maps</a>
-                </div>
+            <!-- Engagement & Sangeet -->
+            <div class="function-card">
+                <div class="function-name">Ring Ceremony & Sangeet</div>
+                <div class="divider"></div>
+                <div class="function-date">9th February 2026</div>
+                <div class="function-time">11AM-3PM</div>
+            </div>
+
+            <!-- Haldi -->
+            <div class="function-card">
+                <div class="function-name">Haldi</div>
+                <div class="divider"></div>
+                <div class="function-date">10th February 2026</div>
+                <div class="function-time">10AM Onwards</div>
+            </div>
+
+            <!-- Shaadi & Reception -->
+            <div class="function-card">
+                <div class="function-name">Shaadi & Reception</div>
+                <div class="divider"></div>
+                <div class="function-date">10th February 2026</div>
+                <div class="function-time">7PM Onwards</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                बस कुछ पल बाकी / Counting Down To Forever
+            </h2>
+            <div class="fancy-underline"></div>
+        </div>
+        <div class="countdown-timer">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="story-bg"></div>
+        <div class="story-overlay"></div>
+        <div class="story-content">
+            <h2 class="story-title">
+                हमारी कहानी / Our Story
+            </h2>
+            <div class="fancy-underline"></div>
+            <p class="story-text">
+                Shreya and Arnav's journey began with shared smiles and endless conversations. Now, surrounded by family and friends, we are ready to embark on this beautiful lifelong adventure together.
+            </p>
+        </div>
+    </section>
+
+    <!-- Blessings Section -->
+    <section class="blessings-section">
+        <div class="blessings-bg"></div>
+        <div class="blessings-overlay"></div>
+        <div class="blessings-content">
+            <h2 class="blessings-title">
+                आशीर्वाद / Blessings
+            </h2>
+            <div class="fancy-underline"></div>
+            <p class="blessings-text">
+                With the gracious blessings of Lord Ganesha, our parents and elders, we invite you to be a part of our joyous union.
+            </p>
+            <p class="blessings-text">
+                May this new chapter be filled with love, happiness, and prosperity.
+            </p>
+            <p class="blessings-invite">
+                पधारो सा! We cordially invite you and your family to grace the occasion with your presence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="venue-section">
+        <img src="map-pin.png" alt="" class="map-pin-bg">
+        <div class="section-header">
+            <h2 class="section-title">
+                स्थान और दिशा-निर्देश / Venue & Directions
+            </h2>
+            <div class="fancy-underline"></div>
+        </div>
+        
+        <div class="venue-container">
+            <!-- Mehendi Venue -->
+            <div class="venue-card">
+                <div class="divider"></div>
+                <div class="venue-name">Mehendi Ceremony</div>
+                <div class="venue-address">Rajasthan Bhawan, Sector 10, Faridabad</div>
+                <a href="https://www.google.com/maps/place/Rajasthan+Seva+Sadan/@28.3728524,77.3240357,14.64z/data=!4m15!1m8!3m7!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!2sRajasthan+Seva+Sadan!8m2!3d28.3815833!4d77.3240137!10e5!16s%2Fg%2F11c1wtf68z!3m5!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!8m2!3d28.3815833!4d77.3240137!16s%2Fg%2F11c1wtf68z!5m1!1e2?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank" class="map-button">View on Google Maps</a>
+            </div>
+
+            <!-- Kirtan Venue -->
+            <div class="venue-card">
+                <div class="divider"></div>
+                <div class="venue-name">Kirtan</div>
+                <div class="venue-address">Rajasthan Bhawan, Sector 10, Faridabad</div>
+                <a href="https://www.google.com/maps/place/Rajasthan+Seva+Sadan/@28.3728524,77.3240357,14.64z/data=!4m15!1m8!3m7!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!2sRajasthan+Seva+Sadan!8m2!3d28.3815833!4d77.3240137!10e5!16s%2Fg%2F11c1wtf68z!3m5!1s0x390cdc5dbe9eb49b:0xa59b4bf6e01cbf45!8m2!3d28.3815833!4d77.3240137!16s%2Fg%2F11c1wtf68z!5m1!1e2?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank" class="map-button">View on Google Maps</a>
             </div>
 
             <!-- Engagement & Sangeet Venue -->
             <div class="venue-card">
                 <div class="divider"></div>
-                <div class="venue-details">
-                    <div class="venue-name">Engagement & Sangeet</div>
-                    <div class="venue-address">Queens Hall, Hollywood Dreams, Vaishali</div>
-                    <a href="https://maps.app.goo.gl/p61JncY1WvQ6NkMHA?g_st=ic" target="_blank" class="map-button">View on Google Maps</a>
-                </div>
+                <div class="venue-name">Engagement & Sangeet</div>
+                <div class="venue-address">Queens Hall, Hollywood Dreams, Vaishali</div>
+                <a href="https://maps.app.goo.gl/p61JncY1WvQ6NkMHA?g_st=ic" target="_blank" class="map-button">View on Google Maps</a>
             </div>
 
             <!-- Haldi & Shaadi Venue -->
             <div class="venue-card">
                 <div class="divider"></div>
-                <div class="venue-details">
-                    <div class="venue-name">Haldi & Shaadi</div>
-                    <div class="venue-address">Kings hall, Hollywood Dreams, Vaishali</div>
-                    <a href="https://maps.app.goo.gl/p61JncY1WvQ6NkMHA?g_st=ic" target="_blank" class="map-button">View on Google Maps</a>
-                </div>
+                <div class="venue-name">Haldi & Shaadi</div>
+                <div class="venue-address">Kings hall, Hollywood Dreams, Vaishali</div>
+                <a href="https://maps.app.goo.gl/p61JncY1WvQ6NkMHA?g_st=ic" target="_blank" class="map-button">View on Google Maps</a>
             </div>
         </div>
     </section>
@@ -1226,11 +1335,11 @@
     <section class="rsvp-section">
         <div class="section-header">
             <h2 class="section-title">
-                <br>
-               आरएसवीपी / RSVP
+                आरएसवीपी / RSVP
                 <br>
                 TIBREWAL FAMILY
             </h2>
+            <div class="fancy-underline"></div>
         </div>
         <p class="rsvp-text">Your presence would make our special day even more memorable. For any query, please contact us.</p>
         
@@ -1259,11 +1368,13 @@
     function updateScroll() {
         const scrolled = window.pageYOffset;
         const scrollIndicator = document.getElementById('scrollIndicator');
-if (scrolled < 300) {
-    scrollIndicator.classList.add('visible');
-} else {
-    scrollIndicator.classList.remove('visible');
-}
+        
+        if (scrolled < 300) {
+            scrollIndicator.classList.add('visible');
+        } else {
+            scrollIndicator.classList.remove('visible');
+        }
+        
         const windowHeight = window.innerHeight;
         
         // Hero background blur and scale effect
@@ -1286,10 +1397,17 @@ if (scrolled < 300) {
         
         // Welcome message appears and stays for a while
         const welcomeMessage = document.getElementById('welcomeMessage');
+        const welcomeGirl = document.getElementById('welcomeGirl');
+        const welcomeMan = document.getElementById('welcomeMan');
+        
         if (scrolled > 200 && scrolled < 1000) {
             welcomeMessage.classList.add('visible');
+            welcomeGirl.classList.add('visible');
+            welcomeMan.classList.add('visible');
         } else {
             welcomeMessage.classList.remove('visible');
+            welcomeGirl.classList.remove('visible');
+            welcomeMan.classList.remove('visible');
         }
         
         ticking = false;
@@ -1346,5 +1464,46 @@ if (scrolled < 300) {
     document.querySelectorAll('.function-card, .venue-card').forEach(card => {
         observer.observe(card);
     });
+
+    // Background Music Control
+    const bgMusic = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    let isPlaying = false;
+
+    // Try to autoplay music (some browsers block autoplay)
+    window.addEventListener('load', () => {
+        bgMusic.play().then(() => {
+            isPlaying = true;
+            musicControl.classList.add('playing');
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        }).catch(() => {
+            // Autoplay blocked, show play button
+            isPlaying = false;
+            musicControl.classList.remove('playing');
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        });
+    });
+
+    // Toggle music on button click
+    musicControl.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            isPlaying = false;
+            musicControl.classList.remove('playing');
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        } else {
+            bgMusic.play();
+            isPlaying = true;
+            musicControl.classList.add('playing');
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        }
+    });
 </script>
-</body> </html>
+</body>
+</html>
