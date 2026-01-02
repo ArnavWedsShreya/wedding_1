@@ -47,6 +47,59 @@
             z-index: 1;
             transition: all 0.1s ease-out;
         }
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateX(-1px); /* iOS centering fix */
+    z-index: 20;
+    pointer-events: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: scrollBounce 1.8s infinite;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+}
+
+.scroll-text {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.scroll-arrow {
+    font-size: 52px;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.scroll-text,
+.scroll-arrow {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+@keyframes scrollBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(5px);
+    }
+}
 
         /* Ganesh Section - Appears on Scroll */
         .ganesh-overlay {
@@ -945,6 +998,11 @@
                 <div class="wedding-date-location">10TH FEBRUARY | GHAZIABAD</div>
             </div>
         </div>
+        <!-- Scroll Indicator -->
+<div class="scroll-indicator" id="scrollIndicator">
+    <div class="scroll-text">SCROLL</div>
+    <div class="scroll-arrow">⌄</div>
+</div>
     </section>
 
     <!-- Main Content Wrapper -->
@@ -1200,6 +1258,12 @@
 
     function updateScroll() {
         const scrolled = window.pageYOffset;
+        const scrollIndicator = document.getElementById('scrollIndicator');
+if (scrolled < 300) {
+    scrollIndicator.classList.add('visible');
+} else {
+    scrollIndicator.classList.remove('visible');
+}
         const windowHeight = window.innerHeight;
         
         // Hero background blur and scale effect
